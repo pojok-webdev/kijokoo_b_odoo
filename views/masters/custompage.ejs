@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../commons/head') -%>
+  <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <%- include('../commons/leftnavbar') -%>
+    
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+        <i class="fas fa-th-large"></i>
+        </a>
+    </li>
+    </ul>
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><%= title %></span>
+    </a>
+
+    <!-- Sidebar -->
+    <%- include('../commons/sidebarmenu') -%>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1><%= title %></h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-itemx"><button class="btn btn-danger" id="btnAddData">Asosiasikan Pelanggan</button></li>
+              <li class="breadcrumb-itemx"><button class="btn btn-danger">Clear Data</button></li>
+              <li class="breadcrumb-itemx active"><button class="btn btn-danger">Hapus Kategori</button></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="tObj" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>BTS</th>
+                    <th>Cabang</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </thead>
+                  <tbody></tbody>
+                  <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>BTS</th>
+                    <th>Cabang</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%-include('../commons/footer')%>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<%- include('../custompages/addpage') -%>
+<%- include('../custompages/confirmation') -%>
+<!-- jQuery -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/assets/dist/js/demo.js"></script>
+<script src="/assets/app/common.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+
+    loadClients = _ => {
+      $.ajax({
+        url:'/getcategoryclients/'+'<%= id %>',
+        dataType:'json'
+      })
+      .done(res=>{
+        console.log('get category clients',res)
+      })
+      .fail(err=>{
+        console.log('err category clients',err)
+      })
+    }
+    loadClients()
+    $('#tObj').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      ajax:{
+        url:'/getcategoryclients/'+'<%= id %>',
+      },
+      "columnDefs": [ 
+        {
+            "targets": 4,
+            "data": null,
+            "defaultContent":'<div class="btn-group"><button type="button" class="btn btn-default">Action</button><button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown"><span class="sr-only">Toggle Dropdown</span></button><div class="dropdown-menu" role="menu"><a class="dropdown-item btnRemoveClient" style="cursor:pointer">Hapus</a></div></div>'
+        },
+        {
+          targets:1,
+          className:"clientname"
+        },
+        {
+          targets:0,
+          className:'trid'
+        }]
+    });
+  });
+  $('#tObj').on('click','.btnManageBts',function(){
+    $('#tObj tr').removeClass('selected')
+    tr = $(this).stairUp({level:4})
+    tr.addClass('selected')
+    $('#show-bts').modal()
+  })
+    populateCustomMenu()
+    $("#btnAddData").click(function(){
+      console.log("Data add")
+      $('#add-client').modal()
+    })
+    $('#btnSaveClient').click(function(){
+      $.ajax({
+        url:''
+      })
+    })
+    $('#cmbClient').select2({
+      ajax:{
+        url:function(params){
+          if(params.hasOwnProperty('term')){
+            return '/clients/'+params.term
+          }else{
+            return '/clients/ '
+          }
+        },
+        processResults:res=>{
+          console.log('Res select2',res)
+          return res
+        }
+      }
+    })
+    $('#cmbClient').change(function(){
+      console.log("test cmbClient",$(this).val())
+      $.ajax({
+        url:'/getsites/'+$(this).val(),
+        dataType:'json'
+      })
+      .done(res=>{
+        console.log('Res',res)
+        $('#cmbSite').empty()
+        res.forEach(site=>{
+          console.log('Site',site)
+          $('#cmbSite').append('<option value="'+site.id+'">'+site.address+'</option>')
+        })
+      })
+      .fail(err=>{
+        console.log('Err',err)
+      })
+    })
+    $('#btnSaveClient').click(function(){
+      console.log('cmbSite',$('#cmbSite').val())
+      $.ajax({
+        url:'/savecategoryclient',
+        type:'post',
+        dataType:'json',
+        data:{
+          category_id:'<%= id %>',
+          client_id:$('#cmbClient').val(),
+          name:$('#cmbClient :selected').text(),
+          client_site_id:$('#cmbSite').val(),
+          address:$('#cmbSite :selected').text()
+        }
+      })
+      .done(res=>{
+        console.log('Res',res)
+      })
+      .fail(err=>{
+        console.log('Err',err)
+      })
+    })
+    $('#tObj').on('click','.btnRemoveClient',function(){
+      $('#confirmRemoveCustomData').modal()
+    })
+    $('#btnYesRemoveCustomData').click(function(){
+      console.log('Remove client')
+      $.ajax({
+        url:'/disassociatecategoryclient/<%= id %>/'+$('#cmbClient').val(),
+      })
+      .done(res=>{
+        console.log('Res',res)
+      })
+      .fail(err=>{
+        console.log('Err',err)
+      })
+    })
+</script>
+</body>
+</html>

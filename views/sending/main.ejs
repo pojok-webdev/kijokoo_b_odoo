@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../commons/head') -%>
+  <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <%- include('../commons/leftnavbar') -%>
+    
+    <!-- Right navbar links -->
+    <%- include('../commons/rightnavbar')%>
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><%= title %></span>
+    </a>
+
+    <!-- Sidebar -->
+    <%- include('../commons/sidebarmenu') -%>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1><%= title %></h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="notelp">Nama Broadcast</label>
+                  <input type="text" id="txtBroadcastName">
+                </div>
+                <div class="form-group">
+                  <label for="notelp">Kategori</label>
+                  <select class="form-control" id="cmbCategory"></select>
+                </div>
+                <div class="form-group">
+                  <label for="notelp">Template</label>
+                  <select class="form-control" id="cmbTemplate">
+                    <option value="1">Maintenance</option>
+                    <option value="2">Notifikasi selesai Maintenance</option>
+                    <option value="3">Notifikasi Gangguan</option>
+                    <option value="4">Notifikasi Update Gangguan</option>
+                    <option value="5">Notifikasi Update Gangguan Rev 1</option>
+                    <option value="6">Notifikasi Penyelesaian Gangguan</option>
+                    <option value="7">Notifikasi Penyelesaian Gangguan Rev 1</option>
+                    <option value="8">Notifikasi Maintenance Rev 2</option>
+                  </select>
+                </div>
+
+                <div class="form-group maintenance allmessagetype">
+                  <label for="nama">Header</label>
+                  <input type="text"  class="form-control" id="maintenanceHeader"/>
+                </div>
+                <div class="form-group maintenance allmessagetype">
+                  <label for="nama">Waktu</label>
+                  <input type="text"  class="form-control" id="maintenanceWaktu"/>
+                </div>
+                <div class="form-group maintenance allmessagetype">
+                  <label for="nama">Durasi Down</label>
+                  <input type="text"  class="form-control" id="maintenanceDurasiDown"/>
+                </div>
+                <div class="form-group maintenance allmessagetype">
+                  <label for="nama">Aktifitas</label>
+                  <input type="text"  class="form-control" id="maintenanceAktifitas"/>
+                </div>
+
+                <div class="form-group maintenancefinished allmessagetype">
+                  <label for="nama">Header</label>
+                  <input type="text"  class="form-control" id="maintenancefinishedHeader"/>
+                </div>
+                <div class="form-group maintenancefinished allmessagetype">
+                  <label for="nama">Waktu</label>
+                  <input type="text"  class="form-control" id="maintenancefinishedWaktu"/>
+                </div>
+                <div class="form-group maintenancefinished allmessagetype">
+                  <label for="nama">Durasi Down</label>
+                  <input type="text"  class="form-control" id="maintenancefinishedDurasiDown"/>
+                </div>
+                <div class="form-group maintenancefinished allmessagetype">
+                  <label for="nama">Aktifitas</label>
+                  <input type="text"  class="form-control" id="maintenancefinishedAktifitas"/>
+                </div>
+
+                <div class="form-group notifikasiGangguan allmessagetype">
+                  <label for="nama">Header</label>
+                  <input type="text"  class="form-control" id="notifikasiGangguanHeader"/>
+                </div>
+                <div class="form-group notifikasiGangguan allmessagetype">
+                  <label for="nama">Start Problem</label>
+                  <input type="text"  class="form-control" id="notifikasiGangguanStartProblem"/>
+                </div>
+                <div class="form-group notifikasiGangguan allmessagetype">
+                  <label for="nama">Segmentasi</label>
+                  <input type="text"  class="form-control" id="notifikasiGangguanSegmentasi"/>
+                </div>
+                <div class="form-group notifikasiGangguan allmessagetype">
+                  <label for="nama">Impact</label>
+                  <input type="text"  class="form-control" id="notifikasiGangguanImpact"/>
+                </div>
+
+                <div class="form-group notifikasiUpdateGangguan allmessagetype">
+                  <label for="nama">gangguan</label>
+                  <input type="text"  class="form-control" id="notifikasiUpdateGangguanGangguan"/>
+                </div>
+                <!--Start Notifikasi Update Gangguan Rev 1-->
+                <div class="form-group notifikasiUpdateGangguanRev1 allmessagetype">
+                  <label for="nama">header</label>
+                  <input type="text"  class="form-control" id="notifikasiUpdateGangguanRev1Header"/>
+                </div>
+                <div class="form-group notifikasiUpdateGangguanRev1 allmessagetype">
+                  <label for="nama">body</label>
+                  <input type="text"  class="form-control" id="notifikasiUpdateGangguanRev1Body"/>
+                </div>
+                <!--End Notifikasi Update Gangguan Rev 1-->
+
+                <div class="form-group notifikasiPenyelesaianGangguan allmessagetype">
+                  <label for="nama">Start</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanStart"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguan allmessagetype">
+                  <label for="nama">End</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanEnd"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguan allmessagetype">
+                  <label for="nama">Durasi Down</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanDurasiDown"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguan allmessagetype">
+                  <label for="nama">Penyebab</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanPenyebab"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguan allmessagetype">
+                  <label for="nama">Action</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanAction"/>
+                </div>
+                <!--start of notifikasiPenyelesaianGangguanRev1-->
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Jenis Gangguan</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1Type"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Start</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1Start"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">End</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1End"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Durasi Down</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1DurasiDown"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Penyebab</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1Penyebab"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Action</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1Action"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Nama Pelanggan</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1ClientName"/>
+                </div>
+                <div class="form-group notifikasiPenyelesaianGangguanRev1 allmessagetype">
+                  <label for="nama">Lokasi</label>
+                  <input type="text"  class="form-control" id="notifikasiPenyelesaianGangguanRev1Location"/>
+                </div>
+                <!--end of notifikasiPenyelesaianGangguanRev1-->
+            <!--notifikasiMaintenanceRev2-->
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Header</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Header"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Hari dan Tanggal</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Date"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Jam</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Hour"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Aktifitas</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Activity"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Prioritas</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Priority"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Dampak</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Impact"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Nama Pelanggan</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2ClientName"/>
+            </div>
+            <div class="form-group notifikasiMaintenanceRev2 allmessagetype">
+              <label for="nama">Lokasi</label>
+              <input type="text"  class="form-control" id="notifikasiMaintenanceRev2Location"/>
+            </div>
+            <!--end of notifikasiMaintenanceRev2-->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <button style="width:100%;display:none;" class="btn btn-warning" id="previewWa">Preview</button>
+            <button style="width:100%;margin: 10px;" class="btn btn-primary" id="sendWa"><strong>Kirim WA</strong></button>
+            <button style="width:100%;margin: 10px;" class="btn btn-success" id="sendMail">Kirim Email</button>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%-include('../commons/footer')%>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<%- include('dialogPreview') -%>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/assets/dist/js/demo.js"></script>
+<script src="/assets/app/common.js"></script>
+<!-- Page specific script -->
+<script>    
+  message = '<%- message %>'
+  useremail = '<%= email %>'
+</script>
+<script src="/assets/app/sending/messageshtml.js"></script>
+<script src="/assets/app/sending/mailing.js"></script>
+<script src="/assets/app/sending/sendwa.js?v=1"></script>
+<script src="/assets/app/sending/axios.js?v=1"></script>
+<script src="/assets/app/sending/qiscus.js"></script>
+<script src="/assets/app/sending/main.js?v=1"></script>
+</body>
+</html>

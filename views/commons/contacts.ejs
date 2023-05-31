@@ -1,0 +1,65 @@
+<div class="col-md-6">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Site Terdampak</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="inputStatus">Pemilihan Site Terdampak</label>
+          <select id="siteTypeId" class="form-control custom-select">
+            <option selected disabled>Pilih </option>
+            <option>Core</option>
+            <option>Backbone</option>
+            <option>BTS</option>
+            <option>AP</option>
+            <option>Pelanggan</option>
+          </select>
+        </div>
+        <div class="form-group clienttype" id="dcores">
+          <label for="inputStatus">Cores</label>
+          <select class="form-control select2" id="cores" data-placeholder="Pilih Core" style="width: 100%;">
+          </select>
+        </div>
+        <div class="form-group clienttype" id="dbackbones">
+          <label for="inputStatus">Backbones</label>
+          <select class="form-control select2" id="backbones" data-placeholder="Pilih Backbone" style="width: 100%;">
+          </select>
+        </div>
+        <div class="form-group clienttype" id="dbts">
+          <label for="inputStatus">BTS</label>
+          <select class="form-control select2" id="bts" data-placeholder="Pilih BTS" style="width: 100%;">
+          </select>
+        </div>
+        <div class="form-group clienttype" id="daps">
+          <label for="inputStatus">AP</label>
+          <select class="form-control select2" id="aps" data-placeholder="Pilih AP" style="width: 100%;">
+          </select>
+        </div>
+        <div class="form-group clienttype" id="dclients">
+          <label for="inputStatus">Pelanggan</label>
+          <select class="form-control select2" id="clients" data-placeholder="Pilih Pelanggan" style="width: 100%;">
+          </select>
+        </div>
+
+        <div class="form-group" id="dnumber">
+            <span style="width:15%">
+              <button style="display:none" type="button" class="btn btn-warning" data-toggle="modal" data-target="#manage-contact-xl" id="btnManageClientPhone_">
+                Manage Nomor Pelanggan
+              </button>
+              <button type="button" class="btn btn-warning" id="btnManageClientPhone">
+                Pengaturan Nomor Pelanggan
+              </button>
+            </span>
+        </div>
+  
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>

@@ -1,0 +1,131 @@
+<div class="modal fade" id="manage-contact-xl">
+<div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Nomor Telepon Pelanggan</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-contact">
+        Penambahan Nomor
+        </button>
+        <br>
+<!-- start of table -->
+        <table id="tblphones" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+            <th>No Telp</th>
+            <th>PIC</th>
+            <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tfoot>
+        </table>
+<!-- end of table -->
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+    </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="add-contact">
+    <div class="modal-dialog">
+      <div class="modal-content bg">
+        <div class="modal-header">
+          <h4 class="modal-title">Penambahan Telepon <span id="managecontacttitle"></span></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-12">
+              <div class="card card-primary">
+                  <div class="card-body">
+                      <div class="form-group">
+                          <label for="notelp">Nomor telp</label>
+                          <input class="form-control" type="text" id="picphone" name="notelp">
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" id="picname" name="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <input class="form-control" type="text" id="picrole" name="role">
+                    </div>
+              </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnSavePhone">Simpan</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+<!--start show contact-->
+<div class="modal fade" id="show-contact">
+  <div class="modal-dialog">
+    <div class="modal-content bg">
+      <div class="modal-header">
+        <h4 class="modal-title">Lihat Telepon Kontak <span id="showcontacttitle"></span></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table id="tblphones" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+            <th>No Telp</th>
+            <th>PIC</th>
+            <th>Role</th>
+            <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tfoot>
+        </table>
+    </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- end show contacts-->
+<!--konfirmasi-->
+<div class="modal fade" id="konfirmasi-hapus-contact">
+  <div class="modal-dialog">
+    <div class="modal-content bg">
+      <div class="modal-header">
+        <h4 class="modal-title">Lihat Telepon Kontak <span id="showcontacttitle"></span></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Benar-benar mau menghapus ?</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnYesRemove">Ya</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Tidak</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!--end of konfirmasi-->

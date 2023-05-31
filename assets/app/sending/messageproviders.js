@@ -1,0 +1,118 @@
+notifikasiMaintenance = obj => {
+    message = '<p>Notipikasi Maintenance {{h-var}}</p>'
+    message+= '<br />'
+    message+= '<p>'
+    message+= '  Pelanggan Yang Terhormat,'
+    message+= '  Informasi maintenance jaringan:'
+    message+= '  <br />'
+    message+= '    -Waktu: {{b-var}}<br />'
+    message+= '    -Durasi Down: {{b-var}}<br />'
+    message+= '    -Aktifitas: {{b-var}}<br />'
+    message+= '  <br />'                  
+    message+= '  </p>'
+    message+= '<br />'
+    message+= '<p>Dampak maintenance:'
+    message+= '  <br />'
+    message+= '    -Nama Pelanggan: {{b-var}}<br />'
+    message+= '    -Lokasi: {{b-var}}<br />'
+    message+= '  <br />'
+    message+= '  </p>'
+    message+= '<br />'
+    message+= '<p>Demikian yang dapat kami sampaikan. Terima kasih.</p>'
+    message+= '<br />'
+    message+= '<p>Customer Support PadiNET</p>'
+    message+= '<br />'
+    return message
+}
+notifikasiSelesaiMaintenance = obj => {
+    message = 'Notifikasi Selesai Maintenance {{h-var}}'
+    message+= '<br />'
+    message+= 'Pelanggan Yang Terhormat,'
+    message+= '<br />'
+    message+= 'Informasi selesai maintenance jaringan:'
+    message+= '<br />'
+    message+= '- Waktu: {{b-var}}<br />'
+    message+= '- Durasi Down: {{b-var}}<br />'
+    message+= '- Aktifitas: {{b-var}}<br />'
+    message+= '- Status: Done<br />'
+    message+= '<br />'
+    message+= '<br />'
+    message+= 'Dampak maintenance:'
+    message+= '<br />'
+    message+= '- Nama Pelanggan: {{b-var}}<br />'
+    message+= '-  Lokasi: {{b-var}}<br />'
+    message+= '<br />'
+    message+= '<br />'
+    message+= 'Demikian yang dapat kami sampaikan. Terima kasih.'
+    message+= '<br />'
+    message+= 'Customer Support PadiNET'
+    return message
+}
+notifikasiGangguan = obj => {
+    message = 'Notifikasi gangguan {{h-var}}'
+    message+= '<br />'
+    message+= 'Pelanggan Yang Terhormat,'
+    message+= '<br />'
+    message+= 'Informasi gangguan jaringan:'
+    message+= '<br />'
+    message+= '-  Start Problem: '+obj.startproblem+'<br />'
+    message+= '-  Segmentasi: '+obj.segmentasi+'<br />'
+    message+= '-  Impact: '+obj.impact+'<br />'
+    message+= '-  Status: dalam penangananh<br />'
+    message+= '<br />'
+    message+= '<br />'
+    message+= 'Dampak gangguan:'
+    message+= '<br />'
+    message+= '-  Nama Pelanggan: '+obj.namapelanggan+'<br />'
+    message+= '-  Lokasi: '+obj.lokasi+'<br />'
+    message+= '<br />'
+    message+= 'Kami mohon maaf atas gangguan yang terjadi. Update selanjutnya akan kami sampaikan kembali.'
+    message+= '<br />' 
+    message+= 'Customer Support PadiNET' 
+    return message
+}
+notifikasiUpdateGangguan = obj => {
+    message = 'Pelanggan Yang Terhormat,'
+    message+= '<br />' 
+    message+= 'Update penanganan gangguan:'
+    message+= '<br />' 
+    message+= '{{b-var}}<br />'
+    message+= '<br />' 
+    message+= 'Update selanjutnya akan kami sampaikan kembali.'
+    message+= '<br />' 
+    message+= 'Customer Support PadiNET'
+    return message
+}
+notifikasiPenyelesaianGangguan = obj => {
+    message = 'Notifikasi Penyelesaian Gangguan'
+    message+= '<br />' 
+    message+= 'Pelanggan Yang Terhormat,'
+    message+= 'Informasi penyelesaian gangguan jaringan:'
+    message+= '<br />'
+    message+= '-  Start: {{b-var}}<br />'
+    message+= '-  End: {{b-var}}<br />'
+    message+= '-  Durasi down: {{b-var}}<br />'
+    message+= '-  Penyebab: {{b-var}}<br />'
+    message+= '-  Action: {{b-var}}<br />'
+    message+= '-  Status: Solved & Monitoring<br />'
+    message+= '<br />'
+    message+= '<br />' 
+    message+= 'Dampak gangguan:'
+    message+= '<br />'
+    message+= '-  Nama Pelanggan: {{b-var}} <br />'
+    message+= '-  Lokasi: {{b-var}} <br />'
+    message+= '<br />'
+    message+= '<br />' 
+    message+= 'Kami mohon maaf atas ketidaknyamanan yang terjadi.'
+    message+= 'Demikian yang kami sampaikan. Terima kasih.'
+    message+= '<br />' 
+    message+= 'Customer Support PadiNET'
+    return messaage
+}
+module.exports = {
+    notifikasiMaintenance:notifikasiMaintenance,
+    notifikasiSelesaiMaintenance:notifikasiSelesaiMaintenance,
+    notifikasiGangguan:notifikasiGangguan,
+    notifikasiUpdateGangguan:notifikasiUpdateGangguan,
+    notifikasiPenyelesaianGangguan:notifikasiPenyelesaianGangguan
+}

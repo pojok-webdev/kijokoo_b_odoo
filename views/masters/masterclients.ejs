@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../commons/head') -%>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <%- include('../commons/leftnavbar') -%>
+    
+    <!-- Right navbar links -->
+    <%- include('../commons/rightnavbar') -%>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><%= title %></span>
+    </a>
+
+    <!-- Sidebar -->
+    <%- include('../commons/sidebarmenu') -%>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1><%= title %></h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><%= title %></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="tObj" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Alias</th>
+                    <th>Alamat</th>
+                    <th>Kota</th>
+                    <th>Telp</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </thead>
+                  <tbody></tbody>
+                  <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Alias</th>
+                    <th>Alamat</th>
+                    <th>Kota</th>
+                    <th>Telp</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%-include('../commons/footer')%>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<%- include('../contacts/modal-manage-contact') -%>
+<!-- jQuery -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="/assets/app/common.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/assets/dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $('#tObj_').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      ajax:"/getdatatabledata/<%= tablename %>"
+    });
+    $('#tObj').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      ajax:{
+        url:"/getdatatabledata",
+        type:'post',
+        data:{
+          tablename:'clients',
+          cols:['id','name','alias','address','city','phone'],
+        },
+      },
+      "columnDefs": [ 
+        {
+            "targets": 6,
+            "data": null,
+            "defaultContent":'<div class="btn-group"><button type="button" class="btn btn-default">Action</button><button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown"><span class="sr-only">Toggle Dropdown</span></button><div class="dropdown-menu" role="menu"><a class="dropdown-item btnShowContacts" style="cursor:pointer">Lihat Kontak</a><div class="dropdown-divider"></div><a class="dropdown-item btnManageContacts" style="cursor:pointer">Penambahan Kontak</a></div></div>'
+        },
+        {
+          targets:1,
+          className:"clientname"
+        },
+        {
+          targets:0,
+          className:'trid'
+        }
+      ]
+    });
+  });
+  $('#tObj').on('click','.btnShowContacts',function(){
+    row = $(this).stairUp({level:4})
+    console.log('Title',row.find('.clientname').text())
+    $.ajax({
+      url:'/getphones/'+row.find('.trid').text(),
+      dataType:'json'
+    })
+    .done(res=>{
+      console.log("Res",res)
+      $('#tblphones tbody').empty()
+      res.forEach(contact=>{
+        $('#tblphones tbody').append('<tr trid='+contact.id+'><td>'+contact.picphone+'</td><td>'+contact.picname+'</td><td>'+contact.picrole+'</td><td><button class="btn btnRemoveContact" style="cursor:pointer">Hapus</button></td></tr>')
+      })
+    })
+    .fail(err=>{
+      console.log("E",err)
+    })
+    $('#showcontacttitle').html(row.find('.clientname').text())
+    $('#show-contact').modal()
+  })
+  $('#tObj').on('click','.btnManageContacts',function(){
+    row = $(this).stairUp({level:4})
+    console.log('Title',row.find('.clientname').text())
+    $('#tObj tr').removeClass('selected')
+    row.addClass('selected')
+    $('#managecontacttitle').html(row.find('.clientname').text())
+    $('#add-contact').modal()
+  })
+  $("#btnSavePhone").click(function(){
+    $.ajax({
+      url:'/savephone',
+      type:'post',
+      data:{
+        client_id:$('#tObj tr.selected').find('.trid').text(),
+        picname:$('#picname').val(),
+        picphone:$('#picphone').val(),
+        picrole:$('#picrole').val()
+      }
+    })
+    .done(res=>{
+      console.log("Success Add contact",res)
+    })
+    .fail(err=>{
+      console.log("Failed Add COntact",err)
+    })
+  })
+  $('#tblphones tbody').on('click','.btnRemoveContact',function(){
+    console.log("tombol hapus ditekan")
+    $('#tblphones tr').removeClass('selected')
+    $(this).stairUp({level:2}).addClass('selected')
+    $('#konfirmasi-hapus-contact').modal()
+  })
+  $("#btnYesRemove").click(function(){
+    $.ajax({
+      url:'/removephone/'+$('#tblphones tr.selected').attr('trid'),
+    })
+    .done(res=>{
+      $('#tblphones tr.selected').remove()
+    })
+    .fail(err=>{
+      console.log("Err",err)
+    })
+  })
+  populateCustomMenu()
+</script>
+</body>
+</html>

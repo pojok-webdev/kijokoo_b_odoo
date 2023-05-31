@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <title>Hei</title>
+    </head>
+    <body>
+        <input type="text" id="filter">
+        <button id="btnDoFilter">do Filter</button>
+        <table>
+            <% location.forEach((x)=>{%>
+                <tr>
+                    <td><%- x.partner_id.display_name %></td>
+                    <td><%- x.partner_id.name %></td>
+                    <td><%- x.kelurahan_id.display_name %></td>
+                    <td><%- x.kecamatan_id.display_name %></td>
+                    <td><%- x.kota_id.display_name %></td>
+                </tr>
+            <%}) %>
+            </table>
+    </body>
+    <script>
+    $('#btnDoFilter').click(function(){
+        console.log('Hye')
+        $.ajax({
+            url:'/getlocations',
+            dataType:'json',
+            type:'post',
+            data:{
+                param:$('#filter').val()
+            }
+        })
+        .done(res=>{
+            console.log("Res",res)
+        })
+        .fail(err=>{
+            console.log("Err",err)
+        })
+    })
+
+    </script>
+</html>
