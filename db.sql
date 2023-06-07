@@ -1,0 +1,1 @@
+create table tickets (id int primary key,kdticket varchar(10),)

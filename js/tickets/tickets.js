@@ -1,0 +1,41 @@
+var mysql = require('promise-mysql'),setting = require('./../appSetting')
+doQuery = (sql,callback) => {
+    var con = mysql.createConnection({
+        host:setting.sql.host,user:setting.sql.user,password:setting.sql.password,database:setting.sql.database
+    })
+    .then(cn=>{
+        var result = cn.query(sql)
+        cn.end()
+        return result
+    })
+    .then(rows=>{
+        callback(rows)
+    })
+}
+saveticket = obj => {
+    sql = 'insert into ticketodoo '
+    sql+= '(client_id,location_id)'
+    sql+= 'values '
+    sql+= '('+obj.client_id+','+obj.location_id+')'
+    doQuery(sql,result=>{
+        console.log('sukesi save ticket',result)
+    })
+}
+gets = (obj,callback) => {
+    sql = 'select client_id,location_id from ticketodoo '
+    doQuery(sql,result=>{
+        console.log('GetS Result',result)
+        callback(result)
+    })
+}
+getyearmonth = _ => {
+    sql = ' select concat(year(now()),lpad(month(now()),2,0))'
+}
+getyearmonthmax = _ =>{
+    sql = 'select case when mx is null then "000" else mx+1 end m from '
+    sql = '(select substring(trim(max(kdticket)),7,3)mx from ticketodoo '
+    sql+= 'where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X'
+}
+module.exports = {
+    gets:gets,saveticket:saveticket,doQuery:doQuery,getyearmonth:getyearmonth
+}

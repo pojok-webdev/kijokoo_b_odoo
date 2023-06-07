@@ -20,7 +20,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><%= title %></span>
+      <span class="brand-text font-weight-light">Halaman <%= title %></span>
     </a>
 
     <!-- Sidebar -->
@@ -51,22 +51,13 @@
                   <thead>
                   <tr>
                     <th width="10%">ID</th>
-                    <th width="30%">Nama</th>
+                    <th width="30%">Namanya</th>
                     <th width="50%">Keterangan</th>
                     <th width="5%">Jml Pelanggan</th>
                     <th width="5%">Aksi</th>
                   </tr>
                   </thead>
                   <tbody></tbody>
-                  <tfoot>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Keterangan</th>
-                    <th>Jml pelanggan</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -119,7 +110,7 @@
 <script src="/assets/dist/js/demo.js"></script>
 <script src="/assets/app/common.js"></script>
 <!-- Page specific script -->
-<script src="js/masters/partner.js"></script>
+<script src="js/masters/tickets.js?v=1"></script>
 <script>
   $('#partner').select2({
     ajax:{
@@ -170,7 +161,7 @@
         type:'post',
         data:function(params){
           var query = {
-            partner_id:5333,
+            partner_id:$('#partner').val(),//5333,
             search:params.hasOwnProperty('term')?params.term:' ',type:'public'
           }
           console.log('Query',query)
@@ -181,6 +172,25 @@
         }
       }      
     })
+</script>
+<script>
+  $('#btnSaveTicket').click(function(){
+    console.log('simpan ticket')
+    $.ajax({
+      url:'/saveticket',
+      type:'post',
+      dataType:'json',
+      data:{
+        client_id:$('#partner').val(),location_id:$('#location').val()
+      }
+    })
+    .done(res=>{
+      console.log('Sukses simpan ticket',res)
+    })
+    .fail(err=>{
+      console.log('Failed simpan ticket',err)
+    })
+  })
 </script>
 </body>
 </html>

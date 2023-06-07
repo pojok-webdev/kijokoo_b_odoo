@@ -1,0 +1,58 @@
+getClient()
+.getCategory()
+
+
+
+
+getObjs = obj => {
+    return {
+        getCategory : _ => {
+            return getObjs({})
+        },
+        getClient : _ => {
+            return getObjs({})
+        }
+    }
+}
+
+
+
+
+getObjs({})
+.getCategory()
+.getClient()
+
+select a.id,a.name,c.id cid, c.name bname,d.email from messagecategories a left outer join categories_clients b on b.category_id=a.id left outer join clients c on b.client_id=c.id left outer join ccs d on d.client_id=c.id;
+https://odoo-migration.padi.net.id/auth
+admin  : cM&w78oYw*oj%J
+
+api  : kAeA5R8NmS*&k4
+
+SERVER = "https://odoo.padi.net.id/auth"
+LOGIN = "apiodoo@padi.net.id"
+PASSWORD = "Totol1nk"
+DB = "padinet"
+
+360f96ee1ebbd1eb16be6baaf83c9720b19b4316
+
+
+ sudo lsof -i :20231
+Pengaduan PDAM
+tanggal: 2 Juni 2023 jam 12:30
+no ticket pengaduan : 46039
+ptutas pengaduan: rizki
+
+
+
+
+
+082131733818
+
+  select trim(max(kdticket))hehe from tickets  where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0))
+select substring(max(kdticket),7,3) from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0))
+select substring(trim(max(kdticket)),6,3) from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0));
+select substring(trim(max(kdticket)),7,3) from tickets where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0));
+
+select case when mx is null then "000" else lpad(mx+1,3,0) end m from  (select substring(trim(max(kdticket)),7,3)mx from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+
+select case when mx is null then "000" else lpad(mx+1,3,0) end m from  (select substring(trim(max(kdticket)),7,3)mx from tickets where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;

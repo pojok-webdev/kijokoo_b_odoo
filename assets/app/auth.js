@@ -1,7 +1,7 @@
 createSalt = obj => {
     return obj.sha1('abcdefgh')
 }
-login = obj => {
+/*login = obj => {
     //console.log('p1',obj.sha1(obj.db.salt+obj.password))
     console.log('p2',obj.db.password)
     if(obj.sha1(obj.password+obj.db.salt)==obj.db.password){
@@ -9,7 +9,7 @@ login = obj => {
     }else{
         console.log(" false")
     }
-}
+}*/
 doAuth = obj => {
     if(obj.session.hasOwnProperty('email')){
         return {

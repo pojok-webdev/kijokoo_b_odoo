@@ -1,100 +1,68 @@
 $(function () {
     init = _ => {
-    }
-    var groupColumn = 1;
-    dt = $('#tObj').DataTable({
-      //columnDefs: [{ visible: false, targets: groupColumn }],
-      order: [[groupColumn, 'asc']],
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-      dom:"Bfrtip",
-      ajax:{
-        url:'/datalocations',
-      },
-      "columnDefs": [ 
-        { visible: false, targets: groupColumn },
-        {
-            "targets": 9,
-            "data": null,
-            "defaultContent":'<div class="btn-group">'
-              +'<button type="button" class="btn btn-default">Aksi</button>'
-              +'<button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">'
-                +'<span class="sr-only">Toggle Dropdown</span></button>'
-                +'<div class="dropdown-menu dropdown-menu-right" role="menu">'
-                  +'<a class="dropdown-item btnEditClient" style="cursor:pointer">Edit</a>'
-                  +'<a class="dropdown-item btnManageClient" style="cursor:pointer;background:gold">Asosiasi dengan Partner</a>'
-                  +'<div class="dropdown-divider"></div>'
-                  +'<a class="dropdown-item btnRemoveClient" style="cursor:pointer;color:red">Hapus</a>'
-                +'</div>'
-                +'</div>'
+      dt = $('#tObj').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        dom:"Bfrtip",
+        ajax:{
+          url:'/datalocations',
         },
-        {
-          targets:3,
-          className:'dt-right'
-        },
-        {
-          targets:2,
-          className:"description dt-head-center"
-        },
-        {
-          targets:1,
-          className:"name",visible:false
-        },
-        {
-          targets:0,
-          className:'trid'
-        }],
-        buttons:[{
-          text: 'Penambahan',
-          className:'btn btn-success',
-          action: function ( e, dt, node, config ) {
-            $('#add-category').modal({
-              backdrop:'static'
-            })
-            }
+        "columnDefs": [ 
+          {
+              "targets": 9,
+              "data": null,
+              "defaultContent":'<div class="btn-group">'
+                +'<button type="button" class="btn btn-default">Aksi</button>'
+                +'<button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">'
+                  +'<span class="sr-only">Toggle Dropdown</span></button>'
+                  +'<div class="dropdown-menu dropdown-menu-right" role="menu">'
+                    +'<a class="dropdown-item btnEditClient" style="cursor:pointer">Edit</a>'
+                    +'<a class="dropdown-item btnManageClient" style="cursor:pointer;background:gold">Asosiasi dengan Partner</a>'
+                    +'<div class="dropdown-divider"></div>'
+                    +'<a class="dropdown-item btnRemoveClient" style="cursor:pointer;color:red">Hapus</a>'
+                  +'</div>'
+                  +'</div>'
           },
           {
-            text:'Refresh',
-            className:'btn btn-warning',
-            action:function(e,dt_,node,config){
-              dt.ajax.reload()
+            targets:3,
+            className:'dt-right'
+          },
+          {
+            targets:2,
+            className:"description dt-head-center"
+          },
+          {
+            targets:1,
+            className:"name"
+          },
+          {
+            targets:0,
+            className:'trid'
+          }],
+          buttons:[{
+            text: 'Penambahan',
+            className:'btn btn-success',
+            action: function ( e, dt, node, config ) {
+              $('#add-category').modal({
+                backdrop:'static'
+              })
+              }
+            },
+            {
+              text:'Refresh',
+              className:'btn btn-warning',
+              action:function(e,dt_,node,config){
+                dt.ajax.reload()
+              }
             }
-          }
-        ],
-        drawCallback: function (settings) {
-          var api = this.api();
-          var rows = api.rows({ page: 'current' }).nodes();
-          var last = null;
-
-          api
-              .column(groupColumn, { page: 'current' })
-              .data()
-              .each(function (group, i) {
-                  if (last !== group) {
-                      $(rows)
-                          .eq(i)
-                          .before('<tr class="group" style="background:black;color:white;"><td colspan="10"><b>' + group + '</b></td></tr>');
-
-                      last = group;
-                  }
-              });
-      }
-    })
-
-    $('a.toggle-vis').on('click', function (e) {
-      e.preventDefault();
-
-      // Get the column API object
-      var column = dt.column($(this).attr('data-column'));
-
-      // Toggle the visibility
-      column.visible(!column.visible());
-    });
+          ]
+      })
+    }
     $('#tObj').on('click','.btnManageClient',function(){
       $('#tObj tr').removeClass('selected')
       tr = $(this).stairUp({level:4})
@@ -245,14 +213,14 @@ $(function () {
         console.log('Err',err)
       })
     })
-    $('#btnSaveTicket').click(function(){
+    $('#btnSaveCategory').click(function(){
       $.ajax({
-        url:'/saveticket',
+        url:'/savecategory',
         type:'post',
         dataType:'json',
         data:{
-          partner_id:$('#partner').val(),
-          location_id:$('#location').val()
+          name:$('#addCategoryName').val(),
+          description:$('#addCategoryDescription').val()
         }
       })
       .done(res=>{

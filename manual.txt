@@ -1,0 +1,30 @@
+Cara retrieve pelanggan :
+Semua pelanggan : curl http://localhost:20221/clients
+https://www.eventbrite.com/mytickets/3911484799/
+
+
+
+
+https://api.telegram.org/bot311276793:AAGpixXvuG9XdAWqUHE-inawZgdki3VsxjI/sendMessage?chat_id=-1001089868759&text=Kaifa%20Haluka
+
+
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "-1001089868759", "text": "Alhamdulillah", "disable_notification": true}' \
+     https://api.telegram.org/bot311276793:AAGpixXvuG9XdAWqUHE-inawZgdki3VsxjI/sendMessage
+
+
+
+--Rendy:
+https://api.telegram.org/bot311276793:AAGpixXvuG9XdAWqUHE-inawZgdki3VsxjI/sendMessage?chat_id=348241520&text=Bismillah
+
+--getUpdates
+https://api.telegram.org/bot311276793:AAGpixXvuG9XdAWqUHE-inawZgdki3VsxjI/getUpdates
+
+
+agus: 221355072
+CS PadiNET: 771900093
+Puji : 219513951
+
+
+create table ccs (id int primary key auto_increment,client_id int,email varchar (200),createdate timestamp default current_timestamp());

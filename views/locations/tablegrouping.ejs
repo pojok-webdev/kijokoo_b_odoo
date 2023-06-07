@@ -47,18 +47,6 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <div>
-                  Tampilkan kolom: 
-                  <a class="toggle-vis" data-column="0">ID</a> 
-                  - <a class="toggle-vis" data-column="1">Nama</a> 
-                  - <a class="toggle-vis" data-column="2">Alamat</a> 
-                  - <a class="toggle-vis" data-column="3">RT</a> 
-                  - <a class="toggle-vis" data-column="4">RW</a> 
-                  - <a class="toggle-vis" data-column="5">Kelurahan</a>
-                  - <a class="toggle-vis" data-column="6">Kecamatan</a>
-                  - <a class="toggle-vis" data-column="7">Kota</a>
-                  - <a class="toggle-vis" data-column="8">Propinsi</a>
-              </div>
                 <table id="tObj" class="table table-bordered table-hover">
                   <thead>
                   <tr>
@@ -74,6 +62,19 @@
                   </tr>
                   </thead>
                   <tbody></tbody>
+                  <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>RT</th><th>RW</th>
+                    <th>Kelurahan</th>
+                    <th>Kecamatan</th>
+                    <th>Kota</th>
+                    <th>Propinsi</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -127,6 +128,6 @@
 <script src="/assets/dist/js/demo.js"></script>
 <script src="/assets/app/common.js"></script>
 <!-- Page specific script -->
-<script src="js/masters/location.js"></script>
+<script src="js/masters/locationgrouping.js"></script>
 </body>
 </html>

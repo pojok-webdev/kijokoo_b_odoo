@@ -1,0 +1,39 @@
+2022-07-29
+cc:
+modal
+simpan
+menampilkan
+
+
+
+{
+    "results":{
+        "category":"ALERT_UPDATE",
+        "channel_id":2687,
+        "channel_name":"Customer Support PadiNET",
+        "hsm_details":[
+            {
+                "approval_status":1,
+                "buttons":[
+                    {
+                        "text":"More Information",
+                        "type":"URL",
+                        "url":"https://s.id/wapadinet"},
+                    {
+                        "phone_number":"+62315616330",
+                        "text":"Call Us",
+                        "type":"PHONE_NUMBER"
+                    }
+                ],
+                "content":"Pelanggan Yang Terhormat,\n\nInformasi maintenance:\n- Waktu: {{1}} \n- Durasi Down: {{2}} \n- Aktifitas: {{3}} \n\nDampak maintenance:\n- Nama Pelanggan: {{4}} \n- Lokasi: {{5}} \n\nDemikian yang dapat kami sampaikan. Terima kasih.","footer":"Customer Support PadiNET","header_content":"Notifikasi Maintenance {{1}}",
+                "header_default_value":"{\"text\":\"HEADER_VAR\",\"type\":\"text\"}",
+                "header_type":"text",
+                "id":30579,
+                "language":"id",
+                "number_of_arguments":5,
+                "rejection_reason":"NONE",
+                "tested":false
+            }
+        ],"id":28095,"name":"bc_maintenance","namespace":"da19e231_1789_4fc2_ab74_fed5fcbcf0f0","type":2
+        }
+}

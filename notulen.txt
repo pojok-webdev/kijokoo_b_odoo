@@ -1,0 +1,24 @@
+penambahan menu master data
+level sites
+data tim CS
+telpon, nama PIC
+
+
+
+
+wget https://api.telegram.org/bot-201184174:AAH2Fy_3wS8A5KGi2cn468dtFCMJjhOqISQ/sendMessage --post-data 'chat_id=-149206255&text="test"'
+
+wget https://api.telegram.org/bot-5587641206:AAESBCBjh1UL_hM1cEl-c3Jifp4KOM2O9oc/sendMessage --post-data 'chat_id=-149206255&text="test"'
+
+wget https://api.telegram.org/bot-5587641206:AAESBCBjh1UL_hM1cEl-c3Jifp4KOM2O9oc/getMe
+
+
+
+10010566
+
+2022-06-27
+penambahan master custom
+
+أَسَاتِيْذُ
+
+أَسَادِيْدُ

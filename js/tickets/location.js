@@ -1,3 +1,4 @@
+var setting = require('./../appSetting')
 get3 = callback => {
 
     const axios = require('axios');
@@ -5,9 +6,9 @@ get3 = callback => {
 let config = {
   method: 'get',
   maxBodyLength: Infinity,
-  url: 'https://odoo.padi.net.id/api/site.location?query={id,partner_id{name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}&filter=[["kecamatan_id","=",3878],["partner_id"],"!=",false]',
+  url: setting.server.url+'/api/site.location?query={id,partner_id{name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}&filter=[["kecamatan_id","=",3878],["partner_id"],"!=",false]',
   headers: { 
-    'Cookie': 'session_id=b41d43ccc4d40ac32a20af6ab9045fa3530c77b9'
+    'Cookie': 'session_id='+obj.session_id+''
   }
 };
 
@@ -21,15 +22,15 @@ axios.request(config)
 });
 
 }
-get2 = (params,callback) => {
+get2 = (obj,callback) => {
   const axios = require('axios');
 
 let config = {
   method: 'get',
   maxBodyLength: Infinity,
-  url: 'https://odoo.padi.net.id/api/site.location?query={id,partner_id{id,name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}&filter=[["kecamatan_id","=",3878],["partner_id","!=",false]]',
+  url: setting.server.url+'/api/site.location?query={id,partner_id{id,name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}&filter=[["kecamatan_id","=",3878],["partner_id","!=",false]]',
   headers: { 
-    'Cookie': 'session_id=b41d43ccc4d40ac32a20af6ab9045fa3530c77b9'
+    'Cookie': 'session_id='+obj.session_id+''
   }
 };
 
@@ -44,15 +45,17 @@ axios.request(config)
 
 }
 
-get = (params,callback) => {
+get = (obj,callback) => {
   const axios = require('axios');
-  console.log(callback)
+  console.log('OBJ : ',obj)
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://odoo.padi.net.id/api/site.location?query={id,partner_id{id,name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}&filter=[["partner_id","!=",false]]',
+    url: setting.server.url+'/api/site.location?'
+    +'query={id,partner_id{id,name,display_name},address,RT,RW,state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name}}'
+    +'&filter=[["partner_id","!=",false]]',
     headers: { 
-      'Cookie': 'session_id=481597c44dd5bd171524e3a879a52db38bb0e912'
+      'Cookie': 'session_id='+obj.session_id+''
     }
   };
 
@@ -66,15 +69,17 @@ get = (params,callback) => {
   });
 
 }
-getbypartneridx = (params,callback) => {
+getbypartneridx = (obj,callback) => {
   const axios = require('axios');
   console.log(callback)
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://odoo.padi.net.id/api/site.location?query={id,partner_id{id,name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name},address}&filter=[["partner_id","=",params.search]]',
+    url: setting.server.url+'/api/site.location?'
+    +'query={id,partner_id{id,name,display_name},state_id{display_name},kelurahan_id{display_name},kecamatan_id{display_name},kota_id{display_name},address}'
+    +'&filter=[["partner_id","=",obj.search]]',
     headers: { 
-      'Cookie': 'session_id=481597c44dd5bd171524e3a879a52db38bb0e912'
+      'Cookie': 'session_id='+obj.session_id+''
     }
   };
 
@@ -89,21 +94,21 @@ getbypartneridx = (params,callback) => {
   });
 
 }
-getbypartnerid = (params,callback) => {
+getbypartnerid = (obj,callback) => {
   const axios = require('axios');
-console.log('PARAMS SEARCH',params.search)
+console.log('obj SEARCH',obj.search)
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://odoo.padi.net.id/api/site.location?query={id,partner_id{id,name,display_name},state_id,kelurahan_id,kecamatan_id,kota_id{display_name},address}&filter=[["partner_id","=",'+params.search.partner_id+']]',
+    url: setting.server.url+'/api/site.location?query={id,partner_id{id,name,display_name},state_id,kelurahan_id,kecamatan_id,kota_id{display_name},address}&filter=[["partner_id","=",'+obj.search.partner_id+'],["address","ilike","'+obj.search.search+'"]]',
     headers: { 
-      'Cookie': 'session_id=481597c44dd5bd171524e3a879a52db38bb0e912'
+      'Cookie': 'session_id='+obj.session_id+''
     }
   };
 
   axios.request(config)
   .then((response) => {
-    console.log(JSON.stringify(response.data));
+    console.log('Lokasi By Partner ID:',JSON.stringify(response.data));
     callback(JSON.stringify(response.data))
   })
   .catch((error) => {

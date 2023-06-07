@@ -1,0 +1,11 @@
+*Alur pengiriman WA*
+setelah terjadi komplain dari pelanggan:
+1. Pilih site terdampak
+2. Pilih template message
+3. user mengisi variabel template yang datanya static 
+4. sistem mengisi variable-template yang datanya dinamis
+5. kirim pesan broadcast WA secara massal
+
+Puji:
+log
+user management

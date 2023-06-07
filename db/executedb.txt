@@ -1,0 +1,10 @@
+ \. C:/jsworkspace/qiscus/db/clients.sql
+ create table clients (id int primary key auto_increment,name varchar(200));
+ insert into clients (name) select distinct upper(namapelanggan)name from tmp;
+  create table clientsites select a.id,b.* from clients a left outer join tmp b on b.namapelanggan=a.name;
+   alter table clientsites drop column namapelanggan;
+
+
+
+
+   

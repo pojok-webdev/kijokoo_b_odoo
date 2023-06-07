@@ -1,0 +1,59 @@
+curl --location --request POST 'https://multichannel.qiscus.com/whatsapp/v1/idmsw-g4y2wgpk6uv4vql/2687/messages' \
+--header 'Qiscus-Secret-Key: 58a8ac62fac448d33ab6978e16b372dd' \
+--header 'Qiscus-App-Id: idmsw-g4y2wgpk6uv4vql' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "to": "+628813272107",
+    "type": "template",
+    "template": {
+        "name": "notifikasi_maintenance_rev2",
+        "language": {
+            "policy": "deterministic",
+            "code": "id"
+        },
+        "components": [
+            {
+                "type":"header",
+                "parameters":[
+                    {
+                        "type":"text",
+                        "text":"01"
+                    }
+                ]
+            },
+            {
+                "type": "body",
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": "Ticket 001"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 002"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 003"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 004"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 005"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 006"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Ticket 007"
+                    }
+                ]
+            }
+        ]
+    }
+}'
