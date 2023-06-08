@@ -12,17 +12,18 @@ doQuery = (sql,callback) => {
         callback(rows)
     })
 }
-saveticket = obj => {
+saveticket = (obj,callback) => {
     sql = 'insert into ticketodoo '
-    sql+= '(client_id,location_id)'
+    sql+= '(clientname,client_id,location_id)'
     sql+= 'values '
-    sql+= '('+obj.client_id+','+obj.location_id+')'
+    sql+= '("'+obj.clientname+'","'+obj.client_id+'","'+obj.location_id+'")'
     doQuery(sql,result=>{
         console.log('sukesi save ticket',result)
+        callback(result.insertId)
     })
 }
 gets = (obj,callback) => {
-    sql = 'select client_id,location_id from ticketodoo '
+    sql = 'select kdticket,client_id,location_id,clientname from ticketodoo a '
     doQuery(sql,result=>{
         console.log('GetS Result',result)
         callback(result)

@@ -56,3 +56,17 @@ select substring(trim(max(kdticket)),7,3) from tickets where substring(kdticket,
 select case when mx is null then "000" else lpad(mx+1,3,0) end m from  (select substring(trim(max(kdticket)),7,3)mx from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
 
 select case when mx is null then "000" else lpad(mx+1,3,0) end m from  (select substring(trim(max(kdticket)),7,3)mx from tickets where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+
+
+
+select case when mx is null then "001" else lpad(mx+1,3,0) end m from  (select substring(trim(max(kdticket)),7,3)mx from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+
+select concat(year(now()),lpad(month(now()),2,0),case when mx is null then "001" else lpad(mx+1,3,0) end) newkdticket 
+        from  (select substring(trim(max(kdticket)),7,3)mx 
+            from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+
+
+
+insert into ticketodoo (client_id,location_id) values (1000,1);
+insert into ticketodoo (client_id,location_id) values (1001,2);
+select client_id,location_id,kdticket,createdate from ticketodoo;

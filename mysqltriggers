@@ -1,0 +1,51 @@
+
+1
+CREATE TRIGGER trigger_name
+    AFTER INSERT
+    ON table_name FOR EACH ROW
+        trigger_body
+
+
+2
+DELIMITER $$
+
+CREATE TRIGGER trigger_name
+    AFTER INSERT
+    ON table_name FOR EACH ROW
+BEGIN
+    -- statements
+END$$    
+
+DELIMITER ;
+
+ex:
+drop trigger if exists generatekdticketodoo;
+delimiter ||
+create trigger generatekdticketodoo
+before insert 
+on ticketodoo for each row 
+begin 
+    select concat(year(now()),lpad(month(now()),2,0),case when mx is null then "001" else lpad(mx+1,3,0) end) into @newkdticket 
+        from  (select substring(trim(max(kdticket)),7,3)mx 
+            from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+    update ticketodoo set kdticket = @newkdticket where id=new.id ;
+end||
+delimiter ;
+
+
+ select action_statement from triggers where trigger_name='createkodeticket';
+
+
+
+delimiter ||
+create trigger generatekdticketodoo
+before insert 
+on ticketodoo for each row 
+begin 
+    select concat(year(now()),lpad(month(now()),2,0),case when mx is null then "001" else lpad(mx+1,3,0) end) into @newkdticket 
+        from  (select substring(trim(max(kdticket)),7,3)mx 
+            from ticketodoo where substring(kdticket,1,6)= concat(year(now()),lpad(month(now()),2,0)))X ;
+    set new.kdticket = @newkdticket;
+end||
+delimiter ;
+

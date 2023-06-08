@@ -3,6 +3,9 @@
   <%- include('../commons/head') -%>
   <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -50,10 +53,10 @@
                 <table id="tObj" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th width="10%">ID</th>
-                    <th width="30%">Namanya</th>
-                    <th width="50%">Keterangan</th>
-                    <th width="5%">Jml Pelanggan</th>
+                    <th width="10%">Kd Ticket</th>
+                    <th width="30%">Client ID</th>
+                    <th width="50%">Nama</th>
+                    <th width="5%">ID Lokasi</th>
                     <th width="5%">Aksi</th>
                   </tr>
                   </thead>
@@ -104,13 +107,15 @@
 <script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="/assets/plugins/moment/moment.min.js"></script>
+<script src="/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/dist/js/demo.js"></script>
 <script src="/assets/app/common.js"></script>
 <!-- Page specific script -->
-<script src="js/masters/tickets.js?v=1"></script>
+<script src="js/masters/tickets.js?v=2"></script>
 <script>
   $('#partner').select2({
     ajax:{
@@ -130,30 +135,32 @@
       }
       }
     })
-    $('#partner').change(function(){
-      partner_id = $(this).val()
-      $('#location').text("")
-      console.log('PARTNER_ID',partner_id)
-      $('#location').select2('destroy')
-      $('#location').select2({
-        ajax:{
-          url:'/locationbypartnerselect2',
-          type:'post',
-          data:function(params){
-            var query = {
-              partner_id:partner_id,
-              search:params.hasOwnProperty('term')?params.term:' ',type:'public'
-            }
-            console.log('Query',query)
-            return query
-          },dataType:'json',
-          processResults:function(data){
-            return data
+  $('#partner').change(function(){
+    partner_id = $(this).val()
+    $('#location').text("")
+    console.log('PARTNER_ID',partner_id)
+    $('#location').select2('destroy')
+    $('#location').select2({
+      ajax:{
+        url:'/locationbypartnerselect2',
+        type:'post',
+        data:function(params){
+          var query = {
+            partner_id:partner_id,
+            search:params.hasOwnProperty('term')?params.term:' ',type:'public'
           }
-        }      
-      })
+          console.log('Query',query)
+          return query
+        },dataType:'json',
+        processResults:function(data){
+          return data
+        }
+      }      
     })
-
+  })
+  $('#ticketdatestart').datetimepicker({
+    icons: { time: 'far fa-clock' }
+  })
 
     $('#location').select2({
       ajax:{
@@ -174,23 +181,6 @@
     })
 </script>
 <script>
-  $('#btnSaveTicket').click(function(){
-    console.log('simpan ticket')
-    $.ajax({
-      url:'/saveticket',
-      type:'post',
-      dataType:'json',
-      data:{
-        client_id:$('#partner').val(),location_id:$('#location').val()
-      }
-    })
-    .done(res=>{
-      console.log('Sukses simpan ticket',res)
-    })
-    .fail(err=>{
-      console.log('Failed simpan ticket',err)
-    })
-  })
 </script>
 </body>
 </html>

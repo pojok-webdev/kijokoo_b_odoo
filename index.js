@@ -92,7 +92,7 @@ i.app.get('/tickets',(req,res)=>{
 i.app.get('/datatickets',(req,res)=>{
   i.ticket.gets({},result=>{
     res.send({data:result.map(obj=>{
-      return [obj.client_id,obj.location_id,'','']
+      return [obj.kdticket,obj.client_id,obj.clientname,obj.location_id]
     })})
   })
 })
@@ -119,7 +119,9 @@ i.app.post('/locationbypartnerselect2',(req,res)=>{
 })
 i.app.post('/saveticket',(req,res)=>{
   params = req.body
-  i.ticket.saveticket(params)
+  i.ticket.saveticket(params,id=>{
+    res.send({id:id})
+  })
 })
 i.app.get('/login',(req,res)=>{
   res.render('commons/login')
