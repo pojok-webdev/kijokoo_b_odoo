@@ -92,7 +92,7 @@ i.app.get('/tickets',(req,res)=>{
 i.app.get('/datatickets',(req,res)=>{
   i.ticket.gets({},result=>{
     res.send({data:result.map(obj=>{
-      return [obj.kdticket,obj.client_id,obj.clientname,obj.location_id]
+      return [obj.kdticket,obj.client_id,obj.clientname,obj.location_id,obj.ticketstart]
     })})
   })
 })
@@ -147,6 +147,22 @@ i.app.get('/handlelogin',(req,res)=>{
 i.app.get('/getcookies',(req,res)=>{
     console.log('Req Cookies',req.cookies.session_id)
     res.send({'cookie':req.cookies})
+})
+i.app.post('/causeselect2',(req,res)=>{
+  params = req.body
+  i.cause.gets({search:params.search,category_id:params.category_id},result=>{
+    res.send({results:result.map(obj=>{
+      return {id:obj.id,text:obj.name}
+    })})
+  })
+})
+i.app.post('/causecategoryselect2',(req,res)=>{
+  params = req.body
+  i.cause.getcategories({search:params.search},result=>{
+    res.send({results:result.map(obj=>{
+      return {id:obj.id,text:obj.name}
+    })})
+  })
 })
 i.app.listen(i.setting.port,_=>{
     console.log('Padi4Odoo API Server start at port ',i.setting.port)

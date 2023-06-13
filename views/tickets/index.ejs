@@ -54,9 +54,10 @@
                   <thead>
                   <tr>
                     <th width="10%">Kd Ticket</th>
-                    <th width="30%">Client ID</th>
+                    <th width="10%">Client ID</th>
                     <th width="50%">Nama</th>
                     <th width="5%">ID Lokasi</th>
+                    <th width="20%">Start</th>
                     <th width="5%">Aksi</th>
                   </tr>
                   </thead>
@@ -87,6 +88,7 @@
 </div>
 <!-- ./wrapper -->
 <%- include('addTicket') -%>
+<%- include('addFollowup') -%>
 <%- include('editTicket') -%>
 <%- include('../custompages/confirmation') -%>
 <!-- jQuery -->
@@ -116,6 +118,53 @@
 <script src="/assets/app/common.js"></script>
 <!-- Page specific script -->
 <script src="js/masters/tickets.js?v=2"></script>
+<script>
+  subrut = _=>{
+    $('#ssubrootcause').select2({
+    ajax:{
+      url:'/causeselect2',
+      type:'post',
+      data:function(params){
+        var query = {
+          category_id:$('#smainrootcause').val(),
+          search:params.hasOwnProperty('term')?params.term:' ',type:'public'
+        }
+        console.log('smainroot',query)
+        return query
+      },
+      dataType:'json',
+      processResults:function(data){
+        console.log('Preso reult',data)
+        return data
+      }
+    }
+  })
+
+  }
+  $('#smainrootcause').select2({
+    ajax:{
+      url:'/causecategoryselect2',
+      type:'post',
+      data:function(params){
+        var query = {
+          search:params.hasOwnProperty('term')?params.term:' ',type:'public'
+        }
+        console.log('smainroot',query)
+        return query
+      },
+      dataType:'json',
+      processResults:function(data){
+        console.log('Preso reult',data)
+        return data
+      }
+    }
+  })
+  $('#smainrootcause').change(function(){
+    $('#ssubrootcause').select2('destroy')
+    subrut()
+  })
+  subrut()
+</script>
 <script>
   $('#partner').select2({
     ajax:{
@@ -161,26 +210,45 @@
   $('#ticketdatestart').datetimepicker({
     icons: { time: 'far fa-clock' }
   })
-
-    $('#location').select2({
-      ajax:{
-        url:'/locationbypartnerselect2',
-        type:'post',
-        data:function(params){
-          var query = {
-            partner_id:$('#partner').val(),//5333,
-            search:params.hasOwnProperty('term')?params.term:' ',type:'public'
-          }
-          console.log('Query',query)
-          return query
-        },dataType:'json',
-        processResults:function(data){
-          return data
+  $('#followupdate').datetimepicker({
+    icons: {time:'far fa-clock'}
+  })
+  $('#location').select2({
+    ajax:{
+      url:'/locationbypartnerselect2',
+      type:'post',
+      data:function(params){
+        var query = {
+          partner_id:$('#partner').val(),//5333,
+          search:params.hasOwnProperty('term')?params.term:' ',type:'public'
         }
-      }      
-    })
-</script>
-<script>
+        console.log('Query',query)
+        return query
+      },dataType:'json',
+      processResults:function(data){
+        return data
+      }
+    }      
+  })
+  $('#cause').select2({
+    ajax:{
+      url:'/causeselect2',
+      type:'post',
+      data:function(params){
+        var query = {
+          search:params.hasOwnProperty('term')?params.term:' ',type:'public'
+        }
+        console.log('cause query',query)
+        return query
+      },
+      dataType:'json',
+      processResults:function(data){
+        console.log("Process result",data)
+        return data
+      }
+    }
+  })
+
 </script>
 </body>
 </html>

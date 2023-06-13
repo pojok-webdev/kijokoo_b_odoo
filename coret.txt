@@ -70,3 +70,6 @@ select concat(year(now()),lpad(month(now()),2,0),case when mx is null then "001"
 insert into ticketodoo (client_id,location_id) values (1000,1);
 insert into ticketodoo (client_id,location_id) values (1001,2);
 select client_id,location_id,kdticket,createdate from ticketodoo;
+
+
+https://www.google.com/maps/place/Barokah+99,+Gajah+Timur,+Magersari,+Kec.+Sidoarjo,+Kabupaten+Sidoarjo,+Jawa+Timur/data=!4m6!3m5!1s0x2dd7e14ccbb68061:0x3332a2ff380ef66c!7e2!8m2!3d-7.4433869999999995!4d112.7149834?utm_source=mstt_1&entry=gps&lucs=47068615&g_ep=CAESCTExLjgyLjMwMRgAINeCAyoINDcwNjg2MTVCAklE

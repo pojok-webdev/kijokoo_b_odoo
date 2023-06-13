@@ -85,7 +85,6 @@ $(function () {
               });
       }
     })
-
     $('a.toggle-vis').on('click', function (e) {
       e.preventDefault();
 
@@ -195,8 +194,6 @@ $(function () {
         console.log('Err',err)
       })
     })
-
-
     $("#btnUpdateCategory").click(function(){
       $.ajax({
         url:'/updatecategory',
@@ -220,7 +217,6 @@ $(function () {
         console.log(err)
       })
     })
-
     $('#tObj').on('click','.btnRemoveClient',function(){
       $('#tObj tr').removeClass('selected')
       tr = $(this).stairUp({
@@ -232,7 +228,6 @@ $(function () {
         backdrop:'static'
       })
     })
-
     $('#btnYesRemoveCustomData').click(function(){
       $.ajax({
         url:'/removecategory/'+$('#tObj tr.selected').find('.trid').text()
@@ -243,29 +238,6 @@ $(function () {
       })
       .fail(err=>{
         console.log('Err',err)
-      })
-    })
-    $('#btnSaveTicket').click(function(){
-      $.ajax({
-        url:'/saveticket',
-        type:'post',
-        dataType:'json',
-        data:{
-          partner_id:$('#partner').val(),
-          location_id:$('#location').val()
-        }
-      })
-      .done(res=>{
-        console.log('Res',res)
-        dt.row.add([
-            res.insertId,
-            $('#addCategoryName').val(),
-            $('#addCategoryDescription').val(),
-            0])
-        .draw()
-      })
-      .fail(err=>{
-        console.log('Error',err)
       })
     })
   });
