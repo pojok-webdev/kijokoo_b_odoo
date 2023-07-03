@@ -1,4 +1,4 @@
-var setting = require('./../appSetting')
+var setting = require('../appSetting')
 gets = (obj,callback) => {
     callback({test:'hehe'})
 }

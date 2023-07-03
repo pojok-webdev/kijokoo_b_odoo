@@ -50,15 +50,35 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <div>
+                  <button class="btn buttontoggler" mydata="0">ID</button>
+                  <button class="btn buttontoggler" mydata="1">Kd Ticket</button>
+                  <button class="btn buttontoggler" mydata="2">ID Partner</button>
+                  <button class="btn buttontoggler" mydata="3">Nama Partner</button>
+                  <button class="btn buttontoggler" mydata="4">ID Lokasi</button>
+                  <button class="btn buttontoggler" mydata="5">Keluhan</button>
+                  <button class="btn buttontoggler" mydata="6">Start</button>
+                  <button class="btn buttontoggler" mydata="7">End</button>
+                  <button class="btn buttontoggler" mydata="8">Durasi</button>
+                  <button class="btn buttontoggler" mydata="9">Pelapor</button>
+                  <button class="btn buttontoggler" mydata="10">Telp</button>
+                  <button class="btn buttontoggler" mydata="11">Aksi</button>
+                </div>
                 <table id="tObj" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th width="10%">Kd Ticket</th>
-                    <th width="10%">Client ID</th>
-                    <th width="50%">Nama</th>
-                    <th width="5%">ID Lokasi</th>
-                    <th width="20%">Start</th>
-                    <th width="5%">Aksi</th>
+                    <th>ID</th>
+                    <th >Kd Ticket</th>
+                    <th >Client ID</th>
+                    <th >Nama</th>
+                    <th >ID Lokasi</th>
+                    <th >Keluhan</th>
+                    <th >Start</th>
+                    <th >End</th>
+                    <th >Durasi</th>
+                    <th >Pelapor</th>
+                    <th >Telp</th>
+                    <th >Aksi</th>
                   </tr>
                   </thead>
                   <tbody></tbody>
@@ -117,6 +137,7 @@
 <script src="/assets/dist/js/demo.js"></script>
 <script src="/assets/app/common.js"></script>
 <!-- Page specific script -->
+<script src="js/libs/dates.js?v=2"></script>
 <script src="js/masters/tickets.js?v=2"></script>
 <script>
   subrut = _=>{
@@ -166,7 +187,7 @@
   subrut()
 </script>
 <script>
-  $('#partner').select2({
+    $('.partnerselect2').select2({
     ajax:{
       url:'/partnerselect2',
       type:'post',
@@ -175,7 +196,7 @@
             kecamatan_id:'',
             search:params.hasOwnProperty('term')?params.term:' ',type:'public'
           }
-          console.log('ZUERY',query)
+          console.log('edit ZUERY',query)
           return query
         },dataType:'json',
       processResults:function(data){
@@ -184,6 +205,7 @@
       }
       }
     })
+    
   $('#partner').change(function(){
     partner_id = $(this).val()
     $('#location').text("")
@@ -213,6 +235,9 @@
   $('#followupdate').datetimepicker({
     icons: {time:'far fa-clock'}
   })
+  $('#followupdate').datetimepicker({
+    icons: {time:'far fa-clock'}
+  })
   $('#location').select2({
     ajax:{
       url:'/locationbypartnerselect2',
@@ -232,7 +257,7 @@
   })
   $('#cause').select2({
     ajax:{
-      url:'/causeselect2',
+      url:'/causecategoryselect2',
       type:'post',
       data:function(params){
         var query = {
@@ -248,7 +273,80 @@
       }
     }
   })
+  populateSubcause = _ => {
+    $('#subcause').select2({
+    ajax:{
+      url:'/causeselect2',
+      type:'post',
+      data:function(params){
+        var query = {
+          category_id:$('#cause').val(),
+          search:params.hasOwnProperty('term')?params.term:' ',type:'public'
+        }
+        console.log('cause query',query)
+        return query
+      },
+      dataType:'json',
+      processResults:function(data){
+        console.log("Process result",data)
+        return data
+      }
+    }
+  })
+  }
+  $('#cause').change(function(){
+    $('#subcause').select2('destroy')
+    $('#subcause').text('')
+    populateSubcause()
+  })
+  populateSubcause()
+</script>
+<script>
+  saveFU = obj => {
+  $.ajax({
+      url:'/savefollowup',
+      type:'post',
+      data:{
+        followUpDate:obj.ticketdate,cause_id:$('#ssubrootcause').val(),ticket_id:id
+      },
+      dataType:'json'
+    })
+    .done(res=>{
+      console.log('Success save Followup',res)
+    })
+    .fail(err=>{
+      console.log('Success save Followup',err)
+    })
+}
+  $('#tObj').on('click','tbody tr .btnFollowUp',function(){
+    $('#tObj tbody tr').removeClass('selected')
+    tr = $(this).stairUp({level:4})
+    id = tr.find('.trid').text()
+    console.log('trid',id)
+    tr.addClass('selected')
+  })
+  $('#btnSaveFollowup').click(function(){
+    id = $('#tObj tbody tr.selected').find('.trid').text()
+    getInputDate({ticketstart : $('#followupdate input').val() },ticketdate=>{
+      console.log('simpan ticket dengan tanggal start ticket',ticketdate)
+      saveFU({ticketdate:ticketdate})
+    })
 
+  })
+</script>
+<script>
+  x = new Date(2023,7,2)
+  console.log('Date',x.getDate())
+  console.log('Day',x.getDay())
+  console.log('Month',x.getMonth())
+  console.log('Year',x.getFullYear())
+  y = new Date(2023,7,3)
+  console.log('Date',y.getDate())
+  console.log('Day',y.getDay())
+  console.log('Month',y.getMonth())
+  console.log('Year',y.getFullYear())
+  z = y - x
+  console.log('Total time',z)
 </script>
 </body>
 </html>

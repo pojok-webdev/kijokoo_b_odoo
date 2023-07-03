@@ -92,7 +92,7 @@ i.app.get('/tickets',(req,res)=>{
 i.app.get('/datatickets',(req,res)=>{
   i.ticket.gets({},result=>{
     res.send({data:result.map(obj=>{
-      return [obj.kdticket,obj.client_id,obj.clientname,obj.location_id,obj.ticketstart]
+      return [obj.id,obj.kdticket,obj.client_id,obj.clientname,obj.location_id,obj.complaint,obj.ticketstart,"","",obj.reporter,obj.reporterphone]
     })})
   })
 })
@@ -124,6 +124,9 @@ i.app.post('/saveticket',(req,res)=>{
   })
 })
 i.app.get('/login',(req,res)=>{
+  res.render('commons/login')
+})
+i.app.get('/logout',(req,res)=>{
   res.render('commons/login')
 })
 i.app.post('/loginhandler',(req,res)=>{
@@ -163,6 +166,34 @@ i.app.post('/causecategoryselect2',(req,res)=>{
       return {id:obj.id,text:obj.name}
     })})
   })
+})
+i.app.post('/savefollowup',(req,res)=>{
+  params = req.body
+  console.log('save followup params',params)
+  i.followup.save(params,id=>{
+    res.send({id:id})
+  })
+})
+i.app.get('/doc',(req,res)=>{
+  res.render('docs/index')
+})
+i.app.get('/getlocation/:location_id',(req,res)=>{
+  params = req.params
+  console.log('PARAms GoT',params)
+  i.location.getbyid({session_id:req.cookies.session_id,id:params.location_id},result=>{
+    res.send(result)
+  })
+})
+i.app.post('/saveticketlocation',(req,res)=>{
+  params = req.body
+  console.log('Paras',params)
+  i.ticketlocation.save(params,result=>{
+    console.log('success save ticket location',result)
+    res.send(result)
+  })
+})
+i.app.get('/testselect',(req,res)=>{
+  res.render('testselect/index')
 })
 i.app.listen(i.setting.port,_=>{
     console.log('Padi4Odoo API Server start at port ',i.setting.port)

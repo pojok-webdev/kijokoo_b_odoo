@@ -116,6 +116,56 @@ console.log('obj SEARCH',obj.search)
   });
 
 }
+getbyid = (obj,callback) => {
+  const axios = require('axios');
+console.log('OBJ got',obj)
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: setting.server.url+'/api/site.location?'
+        +'query={id,partner_id{id,name},code,name,display_name,address,RT,RW,kelurahan_id{id,name},kecamatan_id{id,name},kota_id{id,name},state_id{id,name},phone,pic,code}&'
+        +'filter=[["id","=",'+obj.id+']]',
+    headers: { 
+      'Cookie': 'session_id='+obj.session_id+''
+    }
+  };
+
+  axios.request(config)
+  .then((response) => {
+    console.log('Suses getbyid',JSON.stringify(response.data));
+    callback(JSON.stringify(response.data))
+  })
+  .catch((error) => {
+    console.log('Error getbyid',error);
+  });
+
+}
+embuh = (obj,callback) => {
+  const axios = require('axios');
+console.log('OBJ got',obj)
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: setting.server.url+'/api/site.location?'
+        +'query={id,partner_id{id,name},code,name,display_name,address,RT,RW,kelurahan_id{id,name},kecamatan_id{id,name},kota_id{id,name},state_id{id,name},phone,pic,code}&'
+        +'filter=[["id","=",'+obj.id+']]',
+    headers: { 
+      'Cookie': 'session_id='+obj.session_id+''
+    }
+  };
+  console.log('URL got',config.url)
+
+  axios.request(config)
+  .then((response) => {
+    console.log('Suses getbyid',JSON.stringify(response.data));
+    callback(JSON.stringify(response.data))
+  })
+  .catch((error) => {
+    console.log('Error getbyid',error);
+  });
+
+}
+
 module.exports = {
-    get:get,getbypartnerid:getbypartnerid
+    get:get,getbypartnerid:getbypartnerid,getbyid:getbyid,embuh:embuh
 }

@@ -73,3 +73,136 @@ select client_id,location_id,kdticket,createdate from ticketodoo;
 
 
 https://www.google.com/maps/place/Barokah+99,+Gajah+Timur,+Magersari,+Kec.+Sidoarjo,+Kabupaten+Sidoarjo,+Jawa+Timur/data=!4m6!3m5!1s0x2dd7e14ccbb68061:0x3332a2ff380ef66c!7e2!8m2!3d-7.4433869999999995!4d112.7149834?utm_source=mstt_1&entry=gps&lucs=47068615&g_ep=CAESCTExLjgyLjMwMRgAINeCAyoINDcwNjg2MTVCAklE
+
+
+kucing:
+https://www.instagram.com/reel/CrBz9wEIuK_/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==
+https://www.instagram.com/p/CtbTexBPGDg/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==
+
+
+mysql> select id,name,address,user_id,sale_id,status,createdate from clients where id in (10563 ,10564 );
++-------+-------------------------------+------------------------+---------+---------+--------+---------------------+
+| id    | name                          | address                | user_id | sale_id | status | createdate          |
++-------+-------------------------------+------------------------+---------+---------+--------+---------------------+
+| 10563 | PT. Sucofindo SBU HMPM LT. 11 | Graha Sucofindo Lt. 11 |     178 |     178 | 1      | 2023-03-14 13:55:39 |
+| 10564 | PT. Sucofindo SBU HMPM LT. 15 | Graha Sucofindo Lt. 15 |     178 |     178 | 1      | 2023-03-14 13:58:41 |
++-------+-------------------------------+------------------------+---------+---------+--------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into deletedclients select * from clients where id=10564;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select id from client_sites where client_id=10564;
++------+
+| id   |
++------+
+| 3396 |
++------+
+1 row in set (0.00 sec)
+
+mysql> insert into deletedclient_sites select * from client_sites where client_id=10564;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> delete from clients where id=10564;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> delete from client_sites where client_id=10564;
+Query OK, 1 row affected (0.01 sec)
+
+{id,partner_id{name},code,partner_id,name,display_name,address,RT,RW,kelurahan_id{id,name},kecamatan_id{id,name},kota_id{id,name},state_id{id,name},phone,pic,code}
+{id,partner_id{id,name},code,name,display_name,address,RT,RW,kelurahan_id{id,name},kecamatan_id{id,name},kota_id{id,name},state_id{id,name},phone,pic,code}
+
+Ajarakallahu fii maa anfaqta wa baarakallahu laka fii maa abqoita
+
+mysql> insert into deletedsurvey_sites select * from survey_sites where id=2423;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> delete from survey_sites where id=2423;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into deletedsurvey_requests select * from survey_requests where id=2426;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> delete from survey_requests where id=2426;
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> select count(id)cnt,gender from visitors where date_format(createdate,'%Y-%m')='2023-06' group by gender;
++-----+--------+
+| cnt | gender |
++-----+--------+
+| 311 | 1      |
+|  39 | 0      |
++-----+--------+
+2 rows in set (0.01 sec)
+
+mysql> select count(id)cnt,age from visitors where date_format(createdate,'%Y-%m')='2023-06' group by age;
++-----+-------+
+| cnt | age   |
++-----+-------+
+|  59 | > 35  |
+| 201 | 0-25  |
+|  90 | 25-35 |
++-----+-------+
+3 rows in set (0.01 sec)
+Laki-laki 311
+Pr 39
+
+>35 : 59
+0-25 : 201
+25-35 : 90
+
+$('select').select2();
+
+function select2_search ($el, term) {
+  $el.select2('open');
+
+  // Get the search box within the dropdown or the selection
+  // Dropdown = single, Selection = multiple
+  var $search = $el.data('select2').dropdown.$search || $el.data('select2').selection.$search;
+  // This is undocumented and may change in the future
+
+  $search.val(term);
+  $search.trigger('input');
+  setTimeout(function() { $('.select2-results__option').trigger("mouseup"); }, 500);
+
+}
+
+$('button').on('click', function () {
+  var $select = $($(this).data('target'));
+  select2_search($select, 'Arizona');
+});
+
+2 jam kemudian, datang rombongan adik-adik TK dengan beberapa pembimbing ke lokasi Sapi. 
+Pembimbing: "Nah... anak-anak, ini adalah .."
+
+celingukan nyari Sapi
+
+"Lho Sapinya sudah nggak ada" 
+
+Yang ada hanya jagal yang sedang bersih-besih lokasi sembelihan
+
+
+1. RT 100rb ✅
+2. 
+3. BMH Ngatiyah Mardiyani 100000 7042955293 ✅
+4. DAU Wakaf Ali Suseno 50000 4097229550✅
+5. Sinergiamal Nuria Herawati infaq yatim 100000 7182673484 ✅
+6. SPP Faaza 
+7. Air✅
+8. First Media
+9. Ika Probolinggo ✅
+10. Titi✅
+
+1. RT 100rb ✅
+2. BMH Ngatiyah Mardiyani 100000 7042955293 ✅
+3. DAU Wakaf Ali Suseno 50000 4097229550✅
+4. Sinergiamal Nuria Herawati infaq yatim 100000 7182673484 ✅
+5. Air✅
+6. First Media
+7. Ika Probolinggo ✅
+8. Titi✅

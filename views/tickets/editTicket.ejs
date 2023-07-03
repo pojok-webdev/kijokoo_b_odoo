@@ -1,8 +1,8 @@
-<div class="modal fade" id="edit-category">
+<div class="modal fade" id="edit-ticket">
   <div class="modal-dialog">
     <div class="modal-content bg">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Kategori <span id="modalEditCategory"></span></h4>
+        <h4 class="modal-title">Edit Ticket <span id="modalEditTicket"></span></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,20 +12,53 @@
             <div class="card card-primary">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="notelp">Nama</label>
-                        <input type="text"  class="form-control" id="editCategoryName"/>
+                        <label for="client">Pelanggan</label>
+                        <select class="form-control partnerselect2" id="editpartner" style="width: 100%;"></select>
                     </div>
                     <div class="form-group">
-                      <label for="nama">Keterangan</label>
-                      <input type="text"  class="form-control" id="editCategoryDescription"/>
+                      <label for="nama">Lokasi</label>
+                      <select class="form-control select2" id="editlocation" style="width: 100%;"></select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nama">Keluhan</label>
+                      <input class="form-control" id="editcomplaint" style="width: 100%;">
+                    </div>
+                    <div class="form-group">
+                      <label for="nama">Main Root Cause</label>
+                      <select class="form-control select2" id="editcause" style="width: 100%;"></select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nama">Sub Root Cause</label>
+                      <select class="form-control select2" id="editsubcause" style="width: 100%;"></select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nama">Start</label>
+                      <div class="input-group date" id="editticketdatestart" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#ticketdatestart"/>
+                        <div class="input-group-append" data-target="#ticketdatestart" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                        </div>
+                      </div>  
                   </div>
-            </div>
+                  <div class="form-group">
+                    <label for="">Pelapor</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="editpelapor">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Telp</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="edittelp">
+                    </div>
+                  </div>
+              </div>
             </div>
         </div>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnUpdateCategory">Simpan</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnUpdateTicket">Simpan</button>
       </div>
     </div>
     <!-- /.modal-content -->
