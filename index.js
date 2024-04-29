@@ -20,6 +20,32 @@ i.app.post('/doauth',(req,res)=>{
     }
   })
 })
+i.app.get('/getpartners',(req,res)=>{
+  i.partner.gets({session_id:req.cookies.session_id,search:""},result=>{
+    console.log('RESULT of getpartners',result)
+    res.send({data:JSON.parse(result).result.map(obj=>{
+      return [
+        obj.id,
+        obj.company_id,
+        obj.display_name,
+        obj.company_name,
+        obj.contact_address
+      ]
+    })})
+  })
+})
+i.app.get('/partnerbylocation',(req,res)=>{
+  i.location.partnerbylocationwithlimit({session_id:req.cookies.session_id,search:""},locations=>{
+    res.send({data:JSON.parse(locations).result.map(obj=>{
+      return [
+        obj.id,
+        obj.display_name,
+        obj.partner_id.id,
+        obj.partner_id.name
+      ]
+    })})
+  })
+})
 i.app.get('/locations',(req,res)=>{
   res.render('locations/table',{
     title:'Location',pagename:'Location',email:'puji@padi.net.id'
@@ -92,8 +118,39 @@ i.app.get('/tickets',(req,res)=>{
 i.app.get('/datatickets',(req,res)=>{
   i.ticket.gets({},result=>{
     res.send({data:result.map(obj=>{
-      return [obj.id,obj.kdticket,obj.client_id,obj.clientname,obj.location_id,obj.complaint,obj.ticketstart,"","",obj.reporter,obj.reporterphone]
+      return [
+        obj.id,
+        obj.kdticket,
+        obj.client_id,
+        obj.clientname,
+        obj.location_id,
+        obj.complaint,
+        obj.ticketstart,
+        obj.ticketend,"",
+        obj.reporter,
+        obj.reporterphone,
+        obj.cause_id,
+        obj.cause,
+        obj.causecategory_id,
+        obj.causecategory,
+        obj.status
+      ]
     })})
+  })
+})
+i.app.get('/getcausecategories',(req,res)=>{
+  let src = []
+  i.ticket.getcausecategories({},result=>{
+    res.send({data:result.forEach(obj=>{
+      src[obj.id] = obj.name
+    })})
+  })
+})
+i.app.get('/getcausecategorybyid/:id',(req,res)=>{
+  id = req.params.id
+  i.ticket.getcausecategorybyid({id:id},result=>{
+    console.log(result)
+    res.send({data:result})
   })
 })
 i.app.post('/partnerselect2',(req,res)=>{
@@ -194,6 +251,117 @@ i.app.post('/saveticketlocation',(req,res)=>{
 })
 i.app.get('/testselect',(req,res)=>{
   res.render('testselect/index')
+})
+i.app.post('/closeticket',(req,res)=>{
+  params = req.body
+  i.ticket.closeTicket(params,result=>{
+    res.send({res:result})    
+  })
+})
+i.app.post('/setbelumok',(req,res)=>{
+  params = req.body
+  res.send({res:i.ticket.setbelumok(params,result=>{})})
+})
+i.app.get('/testobj',(req,res)=>{
+  let myobj = {
+    satu:'setong',dua:'duwek',tiga:'tigo'
+  }
+  properties = Object.keys(myobj).forEach(x=>{
+    console.log(x)
+  })
+  keys = Object.keys(myobj).join()
+  console.log('KEYS',keys)
+  vals = Object.values(myobj).join()
+  console.log('VALS',vals)
+})
+i.app.get('/getbackbones/:params',(req,res)=>{
+  params = req.params.params
+  i.backbone.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.get('/getbtses/:params',(req,res)=>{
+  params = req.params.params
+  i.bts.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.get('/getdatacenters/:params',(req,res)=>{
+  params = req.params.params
+  i.datacenters.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.get('/getptps/:params',(req,res)=>{
+  params = req.params.params
+  i.ptp.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.get('/getcores/:params',(req,res)=>{
+  params = req.params.params
+  i.cores.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.get('/getaps/:params',(req,res)=>{
+  params = req.params.params
+  i.aps.gets({search:params},result=>{
+    console.log('Result',result)
+    res.send({results:result.map(obj=>{
+      return {"id":obj.id,"text":obj.name}
+    })
+    })
+  })
+})
+i.app.post('/saveselectedlocation',(req,res)=>{
+  params = req.body
+  console.log('Params got',params)
+  //res.send(params)
+  i.ticket.insertChildren(params,result=>{
+    console.log('REZZ',result)
+    res.send(result)
+  })
+})
+i.app.post('/saveparent',(req,res)=>{
+  params = req.body
+  i.ticket.insertParent(params,result=>{})
+})
+i.app.post('/savegamas',(req,res)=>{
+  params = req.body
+  i.ticket.insertParent(params,result=>{
+    res.send(result)
+  })
+
+})
+i.app.get('/getfus/:id',(req,res)=>{
+  params = req.params
+  i.followup.gets(params,result=>{
+    console.log('ReS',res)
+    res.send({data:result.map(obj=>{
+      return [obj.id,obj.description,obj.conclusion,obj.createdate] 
+    })})
+  })
 })
 i.app.listen(i.setting.port,_=>{
     console.log('Padi4Odoo API Server start at port ',i.setting.port)
